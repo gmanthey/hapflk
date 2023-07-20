@@ -11,7 +11,7 @@ from hapflk import InputOutput as IO
 
 def main():
     counter = utils.Stepper()
-    
+
     parser = argparse.ArgumentParser()
     parser.add_argument( '--flkdb', dest='dbfile', help='DB file created by hapflk', default=None)
     parser.add_argument( '-o', '--prefix', dest='prefix', help='prefix for output files', default='hapflkadapt_out')
@@ -26,7 +26,7 @@ def main():
 
     counter.new('Loading FLK DB file')
     flkmodel = hapflk.HapFLK.from_db_file( myopts.dbfile)
-    
+
     counter.new('Getting covariates information')
     covdata = IO.get_covariates_matrix( myopts.covar_file, myopts.cov, myopts.qcov, flkmodel.pops)
     ##print( covdata)
@@ -92,6 +92,3 @@ def main():
                     print( rs, chrom, int(pos), hflka[i]['Z'], hflka[i]['pvalue'], file=fout)
     counter.new('Done')
     counter.end()
-                    
-if __name__=='__main__':
-    main()
