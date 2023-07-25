@@ -1,4 +1,4 @@
-from __future__ import print_function, division
+import argparse
 import sys
 import numpy as np
 import scipy.stats as ss
@@ -8,7 +8,7 @@ from scipy.optimize import minimize as optim
 from scipy import interpolate
 from numpy.linalg import multi_dot
 from multiprocessing import Pool, cpu_count
-from haplkf import utils, hapflk
+from hapflk import utils, hapflk
 from hapflk import InputOutput as IO
 
 #### Base functions for parallel computations (to put into own file)

@@ -479,7 +479,7 @@ def get_covariates_matrix(filename, fact_names, qcov_names, names, stdize=True):
         M[range(nids), aa] = 1
         Matrices[q] = M[:, 1:]
     for q in covar:
-        M = np.zeros((nids, 1), dtype=np.float)
+        M = np.zeros((nids, 1), dtype=float)
         for i, nom in enumerate(names):
             try:
                 val = float(covariates[q][nom])

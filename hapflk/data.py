@@ -353,7 +353,7 @@ class Dataset:
         pop_names = []
         frqs = []
         ## identify missing markers
-        wtot = np.ones(self.Data.shape[1], dtype=np.bool)
+        wtot = np.ones(self.Data.shape[1], dtype=bool)
         for pname, pvec in self.populations.items():
             pop_founders = pvec & fvec
             ##w = complete_cases(self.Data[pop_founders,])
@@ -379,7 +379,7 @@ class Dataset:
                     pop_founders,
                 ]
             )
-            ff = np.zeros(self.Data.shape[1], dtype=np.float)
+            ff = np.zeros(self.Data.shape[1], dtype=float)
             subw = w[:, wtot]
             subdata = self.Data[
                 pop_founders,
