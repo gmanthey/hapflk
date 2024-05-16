@@ -3,7 +3,7 @@ hapFLK : Software to infer selection from multiple population data
 """
 from numpy import int16, vectorize
 
-VERSION = "2.0rc2"
+VERSION = "2.1"
 
 missing = int16(-1)
 
