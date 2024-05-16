@@ -33,6 +33,7 @@ hapflk = "hapflk.hapflk:run_hapflk"
 hapflkadapt = "hapflk.hapflkadapt:run_hapflkadapt"
 poolflkadapt = "hapflk.poolflkadapt:main"
 flkpoptree = "hapflk.flkpoptree:main"
+flkfreq = "hapflk.flkfreq:main"
 
 [tool.setuptools.dynamic]
 version = {attr = "hapflk.VERSION"}
