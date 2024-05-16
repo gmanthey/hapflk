@@ -181,10 +181,10 @@ def parseShapeIT(prefix, params=defaultParams):
             phenotype=ind[5],
         )
         dataset.Data[2 * iind, :] = np.array(
-            [2 * hdata[s][2 * iind] for s in mySnpIdx], dtype=np.int
+            [2 * hdata[s][2 * iind] for s in mySnpIdx], dtype=int
         )
         dataset.Data[2 * iind + 1, :] = np.array(
-            [2 * hdata[s][2 * iind + 1] for s in mySnpIdx], dtype=np.int
+            [2 * hdata[s][2 * iind + 1] for s in mySnpIdx], dtype=int
         )
     return {"dataset": dataset, "map": sdata["map"]}
 
@@ -264,7 +264,7 @@ def parseBimFile(fileName):
 def fillBedData_fast(fileName, DataMatrix):
     n_indiv, n_snp = DataMatrix.shape
     reader = pgenlib.PgenReader(fileName, raw_sample_ct=n_indiv)
-    buf = np.empty(n_indiv, np.int8)
+    buf = np.empty(n_indiv, dtype="int8")
     for isnp in range(n_snp):
         reader.read(isnp, buf, 0)
         buf[buf == -9] = missing
@@ -475,7 +475,7 @@ def get_covariates_matrix(filename, fact_names, qcov_names, names, stdize=True):
         print('Cofactor "%s" with %d levels' % (q, len(u)))
         print("Levels:" * u)
         levels[q] = u
-        M = np.zeros((nids, len(u)), dtype=np.int)
+        M = np.zeros((nids, len(u)), dtype=int)
         M[range(nids), aa] = 1
         Matrices[q] = M[:, 1:]
     for q in covar:

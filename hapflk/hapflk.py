@@ -389,7 +389,7 @@ class HapFLK(object):
                 if opts.inbred:
                     haplo = np.array(
                         tohap(np.array(data.Data[i, sorted_snps_idx], dtype=int)),
-                        dtype=np.int,
+                        dtype=int,
                     )
                     fastphase_model.addHaplotype(name, haplo)
                 else:
@@ -446,7 +446,7 @@ class HapFLK(object):
                         if opts.inbred:
                             haplo = np.array(
                                 tohap(np.array(data.Data[iind, sorted_snps_idx], dtype=int)),
-                                dtype=np.int,
+                                dtype=int,
                             )
                             fastphase_model.addHaplotype(name, haplo)
                         else:
