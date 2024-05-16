@@ -1,4 +1,8 @@
 site_name: hapFLK ~ testing for selection and local adaptation in population trees.
 theme: readthedocs
+markdown_extensions:
+  - toc:
+      permalink: "#"
+      baselevel: 1
 nav:
   - Home: index.md
