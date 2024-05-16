@@ -8,11 +8,11 @@ genotyping data.
 [1] [Fariello et al., 2013, Detecting Signatures of Selection Through
 Haplotype Differentiation Among Hierarchically Structured
 Populations. Genetics
-193(3):929-941.](http://www.genetics.org/content/193/3/929.abstract)
+193(3):929-941.](https://pubmed.ncbi.nlm.nih.gov/23307896/)
 
 [2] [Bonhomme et al., 2010, Detecting selection in population trees:
 The Lewontin and Krakauer test extended. Genetics 186(1)
-241-262](http://www.genetics.org/content/186/1/241.abstract)
+241-262](https://pubmed.ncbi.nlm.nih.gov/20855576/)
 
 # Installing and running hapflk
 
