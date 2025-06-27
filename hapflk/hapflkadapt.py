@@ -7,7 +7,8 @@ from scipy.stats import percentileofscore
 from scipy.optimize import minimize as optim
 from scipy import interpolate
 from numpy.linalg import multi_dot
-from multiprocessing import Pool, cpu_count
+from multiprocessing import cpu_count
+from concurrent.futures import ProcessPoolExecutor
 from hapflk import utils, hapflk
 from hapflk import InputOutput as IO
 
@@ -310,12 +311,12 @@ class FLKadapt(object):
         self.correct_lrt = None
 
     def __enter__(self):
-        self.pool = Pool(self.nproc)
+        self.pool = ProcessPoolExecutor(self.nproc)
         self.logfile = open(self.prefix + ".log", "w")
         return self
 
     def __exit__(self, *args):
-        self.pool.terminate()
+        self.pool.shutdown()
         self.logfile.close()
 
     ## LRT Single SNP

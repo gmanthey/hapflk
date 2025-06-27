@@ -3,7 +3,7 @@ import sys
 import argparse
 import random
 from functools import partial
-from multiprocessing import Pool, cpu_count
+from multiprocessing import cpu_count
 import numpy as np
 from scipy.stats import chi2,norm
 from hapflk import popgen, InputOutput, hapflkadapt

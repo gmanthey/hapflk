@@ -2,7 +2,8 @@ import sys
 import argparse
 import random
 from functools import partial
-from multiprocessing import Pool, cpu_count
+from multiprocessing import cpu_count
+from concurrent.futures import ProcessPoolExecutor
 import numpy as np
 from scipy.stats import chi2, norm
 from hapflk import popgen, InputOutput, hapflkadapt
@@ -258,7 +259,7 @@ def main():
             flkfunc = partial(
                 eigen_contrib_diallelic, w=ff.w, un=ff.un, invF=ff.invF, D=ff.D, Q=ff.Q
             )
-            with Pool(opts.ncpu) as p:
+            with ProcessPoolExecutor(opts.ncpu) as p:
                 res = p.map(flkfunc, [snpfreqs[:, s] for s in range(snpfreqs.shape[1])])
             pzero = np.array([x[0] for x in res])
             sub = (pzero > 0.05) & (pzero < 0.95)
@@ -291,7 +292,7 @@ def main():
             flkfunc = partial(
                 eigen_contrib_diallelic, w=ff.w, un=ff.un, invF=ff.invF, D=ff.D, Q=ff.Q
             )
-            with Pool(opts.ncpu) as p:
+            with ProcessPoolExecutor(opts.ncpu) as p:
                 res = p.map(flkfunc, [rawsnpfreqs[:, s] for s in range(rawsnpfreqs.shape[1])])
             pzero = np.array([x[0] for x in res])
             sub = (pzero > 0.05) & (pzero < 0.95)
@@ -316,7 +317,7 @@ def main():
     ff = popgen.FLK_test(kinship_raw)
     flkfunc = partial(eigen_contrib_diallelic, w=ff.w, un=ff.un, invF=ff.invF, D=ff.D, Q=ff.Q)
     with open(opts.filename) as sync_file:
-        with Pool(opts.ncpu) as p:
+        with ProcessPoolExecutor(opts.ncpu) as p:
             with open(opts.prefix + ".flk", "w") as fout:
                 with open(opts.prefix + ".frq", "w") as frq_file:
                     print("chr", "pos", "refa", "DP", "est", *mypopnames, file=frq_file)

@@ -1,6 +1,7 @@
 import sys
 import argparse
-from multiprocessing import Pool, cpu_count
+from multiprocessing import cpu_count
+from concurrent.futures import ProcessPoolExecutor
 from functools import partial
 import numpy as np
 from scipy.stats import chi2, norm
@@ -93,7 +94,7 @@ def main():
         ff = popgen.FLK_test(kinship)
         flkfunc = partial(eigen_contrib_diallelic, w=ff.w, un=ff.un, invF=ff.invF, D=ff.D, Q=ff.Q)
 
-        with Pool(opts.ncpu) as p:
+        with ProcessPoolExecutor(opts.ncpu) as p:
             res = p.map(flkfunc, [frq[:, s] for s in range(frq.shape[1])])
         pzero = np.array([x[0] for x in res])
         sub = (pzero > 0.05) & (pzero < 0.95)
@@ -117,7 +118,7 @@ def main():
     ## Compute FLK
     ff = popgen.FLK_test(kinship)
     flkfunc = partial(eigen_contrib_diallelic, w=ff.w, un=ff.un, invF=ff.invF, D=ff.D, Q=ff.Q)
-    with Pool(opts.ncpu) as p:
+    with ProcessPoolExecutor(opts.ncpu) as p:
         res = p.map(flkfunc, [frq[:, s] for s in range(frq.shape[1])])
         with open(opts.prefix + ".flk", "w") as fout:
             print("snp", "pzero", "FLK", "df", "pval", file=fout)
