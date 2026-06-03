@@ -12,7 +12,7 @@ description = "Software to infer selection from multiple population data"
 readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "GPL v3"}
-dependencies = ['numpy', 'scipy', 'git+https://github.com/gmanthey/fastphase.git', "Pgenlib>=0.90.1"]
+dependencies = ['numpy', 'scipy', 'fastphase @ git+https://github.com/gmanthey/fastphase.git', "Pgenlib>=0.90.1"]
 classifiers = [
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Science/Research",
